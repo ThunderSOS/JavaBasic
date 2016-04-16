@@ -1,0 +1,9 @@
+10 LET n = 5
+20 LET m = 1
+30 GOSUB 100
+40 PRINT m
+50 STOP
+100 LET m = m * n 
+105 LET n = n-1 
+110 IF n > 0 THEN GOTO 100
+120 RETURN
