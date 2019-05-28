@@ -31,6 +31,7 @@ public class FunctionFactory {
     functions.put("S_WIDTH", new S_WIDTH());
     functions.put("SUBSTRING", new SUBSTRING());
     functions.put("CHR$", new CHR$());
+    functions.put("STR$", new STR$());
 	}
 	
 	private FunctionFactory() {

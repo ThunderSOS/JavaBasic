@@ -20,7 +20,6 @@ import org.happysoft.basic.expression.StringUtils;
  */
 public class Program {
   
-  private LocalArgumentMap localArgs;
   private DisplayWindow display = new DisplayWindow(this);
   private Integer currentLineNumber = 0;
   private Integer currentStatementNumber = 0;
@@ -228,7 +227,7 @@ public class Program {
     try {
       Program p = new Program();
       
-      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\clock.bas");
+      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\udf2.bas");
 
 
       p.parseProgram(program);

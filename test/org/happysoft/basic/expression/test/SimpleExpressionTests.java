@@ -42,8 +42,7 @@ public class SimpleExpressionTests {
     tests.put("testSimpleUnary1", new TestSet("-(-1)", 1d));
     tests.put("testSimpleUnary2", new TestSet("-1", -1d));
     tests.put("testSimpleUnary3", new TestSet("2++1", 3d));
-    tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));    
-    
+    tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));        
     tests.put("test chr$", new TestSet("chr$(\"A\")", 65d));
 	}
 

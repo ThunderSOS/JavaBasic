@@ -6,6 +6,7 @@ import java.util.Map;
 import org.happysoft.basic.SyntaxError;
 import org.happysoft.basic.expression.Expression;
 import org.happysoft.basic.expression.ExpressionResult;
+import org.happysoft.basic.expression.function.UserDefinedFunction;
 import org.happysoft.basic.var.NumericArrayTable;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,7 +35,7 @@ public class FunctionExpressionTests {
   }
 
 	@Before
-	public void setUp() throws SyntaxError{
+	public void setUp() throws SyntaxError {
     NumericArrayTable n = NumericArrayTable.getInstance();
     n.createArray("a", 2, 2);
     n.createArray("b", 10, 10);
@@ -43,11 +44,13 @@ public class FunctionExpressionTests {
     n.setValue("a", 3, 0, 1);
     n.setValue("a", 5, 1, 0);
     n.setValue("a", 7, 1, 1);
-    tests.put("test1", new TestSet("SIN(PI/2)", 1d));
-    tests.put("test2", new TestSet("COS(-PI)", -1d));
-    tests.put("test3", new TestSet("MOD(5, a[0, 1])", 2d));
-    tests.put("test4", new TestSet("a[MOD(SIN(b[0, 0]), 2), 1]", 3d));
+    tests.put("test SIN", new TestSet("SIN(PI/2)", 1d));
+    tests.put("test COS", new TestSet("COS(-PI)", -1d));
+    tests.put("test MOD", new TestSet("MOD(5, a[0, 1])", 2d));
+    tests.put("test MOD2", new TestSet("a[MOD(SIN(b[0, 0]), 2), 1]", 3d));
+    tests.put("test INT", new TestSet("INT(3.5)", 3d));
     tests.put("testNestedArray1", new TestSet("a[a[0, 0]+1, a[0, 0]+1]", 7d));
+    
 	}
 
 	@Test
