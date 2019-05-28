@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 /**
  * @author chris
  */
-public class SimpleNumericExpressionTests {
+public class SimpleExpressionTests {
  
   private Map<String, TestSet> tests = new HashMap<String, TestSet>();
   
@@ -28,7 +28,7 @@ public class SimpleNumericExpressionTests {
     } 
   }
 
-  public SimpleNumericExpressionTests() {
+  public SimpleExpressionTests() {
   }
 
 	@Before
@@ -42,7 +42,9 @@ public class SimpleNumericExpressionTests {
     tests.put("testSimpleUnary1", new TestSet("-(-1)", 1d));
     tests.put("testSimpleUnary2", new TestSet("-1", -1d));
     tests.put("testSimpleUnary3", new TestSet("2++1", 3d));
-    tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));                              
+    tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));    
+    
+    tests.put("test chr$", new TestSet("chr$(\"A\")", 65d));
 	}
 
 	@Test

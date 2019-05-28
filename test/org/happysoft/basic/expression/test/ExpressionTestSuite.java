@@ -15,7 +15,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  SimpleNumericExpressionTests.class, 
+  SimpleExpressionTests.class, 
   StringExpressionTests.class,
   FunctionExpressionTests.class,
   NumericArrayExpressionTests.class,

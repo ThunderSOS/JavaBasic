@@ -2,7 +2,7 @@
 2 WINDOW "Clock", s_width, s_height
 3 INK 255, 255, 255 : PAPER 0, 0, 0: CLS
 
-10 DEF seconds()=INT(local_time()/1000)   
+10 DEF seconds()=INT(time()/1000)   
 11 DEF minutes()=INT(seconds()/60)
 12 DEF hours()=INT(minutes()/12)
 
@@ -15,6 +15,7 @@
 32 PRINT AT x, y; INT(n/5)
 33 NEXT n
 40 LET draw = 1
+# draw the outer circle
 45 ELLIPSE radius*2, radius*2
 
 # clock loop
