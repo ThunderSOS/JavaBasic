@@ -8,6 +8,8 @@ import org.happysoft.basic.SyntaxError;
 
 /**
  * @author Chris
+ * GOTO line
+ * Continue execution from the stated line number. 
  */
 public class GOTO extends AbstractCommand {
 

@@ -8,7 +8,9 @@ import org.happysoft.basic.SyntaxError;
 
 /**
  * @author Chris
- * 
+ * GOSUB line
+ * Execution continues from the stated line until a RETURN is hit
+ * then we jump back to the statement after the GOSUB call. 
  */
 public class GOSUB extends AbstractCommand {
 

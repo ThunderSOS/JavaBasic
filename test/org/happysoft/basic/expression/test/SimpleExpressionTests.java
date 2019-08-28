@@ -35,7 +35,6 @@ public class SimpleExpressionTests {
 	public void setUp() {
     tests.put("testDeeplyHested", new TestSet("(((((2)+1))))", 3d));
     tests.put("testNestedParenthesis", new TestSet("1+((2+5)*2)", 15d));
-    tests.put("testPowers", new TestSet("2**2**3", 64d));
     tests.put("testParenthesisPrecedence", new TestSet("(3+2)*4", 20d));
     tests.put("testMultiplyPrecedence", new TestSet("3+2*4", 11d));
     tests.put("testDoubleNegative", new TestSet("1--1", 2d));
@@ -43,7 +42,14 @@ public class SimpleExpressionTests {
     tests.put("testSimpleUnary2", new TestSet("-1", -1d));
     tests.put("testSimpleUnary3", new TestSet("2++1", 3d));
     tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));        
-    tests.put("test chr$", new TestSet("chr$(\"A\")", 65d));
+    tests.put("testChr$", new TestSet("chr$(\"A\")", 65d));
+    tests.put("testPowers", new TestSet("2**2**3", 64d));
+    tests.put("testPower", new TestSet("2+1**4", 81d)); // power precedence 
+    tests.put("testPower2", new TestSet("1+(2**4)", 17d));
+    tests.put("testBooleanAnd", new TestSet("2 & 3", 2d));
+    tests.put("testBooleanOr", new TestSet("1 | 2 | 4", 7d));
+    tests.put("testBooleanNot", new TestSet("!1", 0d));
+    
 	}
 
 	@Test

@@ -93,7 +93,6 @@ public class Statement {
       try {
         ConnectorElement connective = connectives[connectiveIndex++];
         nextConnective = checkForKeyword(connective.name(), currentPosition);
-        System.out.println("nextConnective: " + nextConnective);
         connectiveLen = connective.name().length();
         
         if (nextConnective < 0) {
@@ -202,6 +201,9 @@ public class Statement {
     String[] ids = line.split(",");
     for(int i = 0; i < ids.length; i++) {
       String id = ids[i].trim();
+      if(id.indexOf("[") > 0) {
+        throw new SyntaxError("Reading directly into an array is not currently supported, use a separate assignment");
+      }
       identifiers.add(id);
       System.out.println("Identifier: " + id);
     }

@@ -11,7 +11,7 @@ import org.happysoft.basic.expression.ExpressionResult;
 
 /**
  * @author Chris Francis (c_francis1@yahoo.com)
- * 
+ * Resets the location of the next DATA statement for READ
  */
 public class RESTORE extends AbstractCommand {
   

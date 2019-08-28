@@ -6,7 +6,6 @@ import java.util.Map;
 import org.happysoft.basic.SyntaxError;
 import org.happysoft.basic.expression.Expression;
 import org.happysoft.basic.expression.ExpressionResult;
-import org.happysoft.basic.expression.function.UserDefinedFunction;
 import org.happysoft.basic.var.NumericArrayTable;
 import org.junit.Before;
 import org.junit.Test;

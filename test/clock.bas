@@ -2,9 +2,9 @@
 2 WINDOW "Clock", s_width, s_height
 3 INK 255, 255, 255 : PAPER 0, 0, 0: CLS
 
-10 DEF seconds()=INT(time()/1000)   
-11 DEF minutes()=INT(seconds()/60)
-12 DEF hours()=INT(minutes()/12)
+10 DEF seconds() = INT(time()/1000)
+11 DEF minutes() = INT(seconds()/60)
+12 DEF hours()   = INT(minutes()/12)/*60
 
 # draw the numbers on the clock face
 20 PLOT s_width/2, s_height/2 
@@ -20,18 +20,19 @@
 
 # clock loop
 50 LET t = seconds()
-55 LET secs = mod(t, 60)
-56 LET mins = mod(minutes(), 60)
-57 LET hours = mod(hours(), 24)
+51 LET secs  = mod(seconds(), 60)
+52 LET mins  = mod(minutes(), 60)
+53 LET hours = mod(hours(), 24)
 60 PUSH secs
 61 GOSUB 150
 62 POP secs$
 63 PUSH mins
 64 GOSUB 150
 65 POP mins$
-66 PUSH hours/6
+66 PUSH hours
 67 GOSUB 150
 68 POP hours$
+69 PRINT AT 0, 35; seconds()
 70 PRINT AT 0, 20; hours$ + ":" + mins$ + ":" + secs$
 
 # draw hands

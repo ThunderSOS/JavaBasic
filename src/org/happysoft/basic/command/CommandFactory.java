@@ -8,11 +8,8 @@ import org.happysoft.basic.SyntaxError;
  */
 public class CommandFactory {
 
-	private static CommandFactory instance;
-
-	static {
-		instance = new CommandFactory();
-	}
+	private static CommandFactory instance = new CommandFactory();
+	
 	private CommandFactory() {
 	}
 

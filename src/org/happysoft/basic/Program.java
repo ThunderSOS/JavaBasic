@@ -140,10 +140,9 @@ public class Program {
       }
     } catch (SyntaxError se) {
       System.out.println("Syntax error at " + currentLineNumber + ":" + currentStatementNumber + " - " + se.getMessage());
-      se.printStackTrace();
     }
     display.finish();
-    System.out.println("run exits");
+    System.out.println("Exit");
   }
   
   private Statement getNextStatement(boolean commandOnly) throws SyntaxError {
@@ -227,7 +226,7 @@ public class Program {
     try {
       Program p = new Program();
       
-      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\udf2.bas");
+      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\read_1.bas");
 
 
       p.parseProgram(program);

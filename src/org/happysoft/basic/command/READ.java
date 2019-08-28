@@ -1,5 +1,5 @@
 /**
- * Copyright 2013. All rights reserved. 
+ * Copyright 2013. All rights reserved.
  */
 package org.happysoft.basic.command;
 
@@ -17,38 +17,35 @@ import org.happysoft.basic.var.VariableTable;
 
 /**
  * @author Chris Francis (c_francis1@yahoo.com)
+ * READ data from a DATA statement
+ * e.g.
+ * READ a,b,c,d,e,f,g
+ * DATA 1,2,3,4,5,6,7
+ * 
+ * To read into an array use: 
+ * READ a
+ * LET a[n] = a
  */
 public class READ extends AbstractCommand {
 
   @Override
   public StructureElement[] getCommandStructure() {
-    return new StructureElement[] { StructureElement.IDENTIFIER_LIST };
-  }  
-  
+    return new StructureElement[]{StructureElement.IDENTIFIER_LIST};
+  }
+
   @Override
   public ExtendedMode[] getExtendedModes() {
-    return new ExtendedMode[] {
+    return new ExtendedMode[]{
       ExtendedMode.FROM,
       ExtendedMode.KEY
     };
   }
-  
+
   @Override
   public void execute(Program context, Statement statement) throws SyntaxError {
-    switch(extendedMode) {
-      case FROM:
-        readIO(statement);
-        break;
-        
-      case KEY:
-        System.out.println("Read key");
-        break;
-        
-      default:
-        readData(context, statement);
-    }
+    readData(context, statement);
   }
-  
+
   private void readIO(Statement statement) throws SyntaxError {
     String ioIdentifier = statement.getIdentifiers()[0];
     String var = statement.getIdentifiers()[1];
@@ -56,43 +53,43 @@ public class READ extends AbstractCommand {
     int max = (int) maxE.eval().getArgument().getIntValue();
     ConnectableTable ct = ConnectableTable.getInstance();
     byte[] b = ct.read(ioIdentifier, max);
-   
-    if(var.endsWith("$")) {
+
+    if (var.endsWith("$")) {
       String s = new String(b);
       StringTable st = StringTable.getInstance();
       st.setStringVariable(var, s);
     } else {
       NumericArrayTable nt = NumericArrayTable.getInstance();
       nt.createArray(var, b.length);
-      for(int i = 0; i < b.length; i++) {
+      for (int i = 0; i < b.length; i++) {
         nt.setValue(var, b[i], i);
       }
     }
   }
-  
+
   /**
-   * Implements the READ command when associated with DATA. 
-   * DATA lines in the program need to be scanned for and are processed 
-   * as required. 
-   * 
+   * Implements the READ command when associated with DATA. DATA lines in the
+   * program need to be scanned for and are processed as required.
+   *
    * @param context
    * @param statement
-   * @throws SyntaxError 
+   * @throws SyntaxError
    */
   private void readData(Program context, Statement statement) throws SyntaxError {
+    System.out.println("Read data");
     int currentLine = context.getCurrentLine();
     int currentStatement = context.getCurrentStatement();
-    int dataLine = context.getDataLineNumber(); 
+    int dataLine = context.getDataLineNumber();
     int dataStatement = context.getDataStatementNumber();
 
     DataCache data = DataCache.getInstance();
     String[] identifiers = statement.getIdentifiers();
 
-    for(String var : identifiers) {  
+    for (String var : identifiers) {
       ExpressionResult res = null;
       try {
-        res = data.getNext();     
-        
+        res = data.getNext();
+
         // we may have already read some data but possibly not enough. 
       } catch (IndexOutOfBoundsException ie) {
         // so let's find the next line containing a DATA statement and 
@@ -114,20 +111,22 @@ public class READ extends AbstractCommand {
           context.setCurrentLineNumber(currentLine);
           context.setCurrentStatementNumber(currentStatement);
           throw new SyntaxError("Not enough DATA");
-        } 
+        }
       }
 
       Argument arg = res.getArgument();
+      
+      System.out.println("***** " + arg.getTokenType());
 
-      if(arg.getTokenType() == TokenType.NUMBER) {
+      if (arg.getTokenType() == TokenType.NUMBER) {
         if (var.endsWith("$")) {
           throw new SyntaxError("Numeric assignment to string variable");
         }
         double value = arg.getDoubleValue();
         VariableTable.getInstance().setVariable(var, value);
-      }  
+      }
 
-      if(arg.getTokenType() == TokenType.STRING) {
+      if (arg.getTokenType() == TokenType.STRING) {
         if (!var.endsWith("$")) {
           throw new SyntaxError("String assignment to non string variable");
         }
@@ -135,7 +134,7 @@ public class READ extends AbstractCommand {
         StringTable.getInstance().setStringVariable(var, string);
       }
     }
-    
+
     // continue from where we were
     context.setLineAndStatement(currentLine, currentStatement);
   }

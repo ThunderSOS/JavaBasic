@@ -11,6 +11,7 @@ public enum ConnectorElement {
   //ELSE("ELSE", true),
   TO("TO", false), 
   STEP("STEP", true),
+  //INTO("INTO", true),
   ;
   
   private boolean optional = false;

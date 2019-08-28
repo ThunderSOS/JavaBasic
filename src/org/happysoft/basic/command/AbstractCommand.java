@@ -12,7 +12,7 @@ import org.happysoft.basic.SyntaxError;
 public abstract class AbstractCommand implements Command {
   
   ExtendedMode extendedMode = null;
-  
+    
   public ExtendedMode[] getExtendedModes() {
     return null;
   }
