@@ -53,7 +53,7 @@
 124 INK 0, 255, 255
 125 IF draw == 1 THEN DRAW s_width/2+80*(sin(-(mins+angle_offset)/30*PI)), s_height/2+80*(cos(-(mins+angle_offset)/30*PI)) 
 126 INK 0, 255, 0
-127 IF draw == 1 THEN DRAW s_width/2+60*(sin(-((hours*5)+angle_offset)/12*PI)), s_height/2+60*(cos(-((hours*5)+angle_offset)/30*PI)) 
+127 IF draw == 1 THEN DRAW s_width/2+60*(sin(-((hours*5)+angle_offset)/30*PI)), s_height/2+60*(cos(-((hours*5)+angle_offset)/30*PI)) 
 128 LET draw = 0
 
 # undraw the hands 
