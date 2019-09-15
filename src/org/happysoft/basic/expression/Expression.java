@@ -161,7 +161,6 @@ public class Expression {
 		Argument[] args = getFunctionArgs(argToken, numArgs);
 		Argument a = fn.eval(args);
     argumentStack.push(a);
-    System.out.println("Function evaluated: " + a.value);
 	}
 
 	private Argument[] getFunctionArgs(String token, int numArgs) throws SyntaxError {
@@ -172,7 +171,6 @@ public class Expression {
 		Argument[] arr = new Argument[numArgs];
 		for(int i = 0; i < numArgs; i++) {
 			Argument a = argumentStack.pop();
-      System.out.println("popped " + a.value);
 			arr[args.length-i-1] = a;
 		}
 		return arr;

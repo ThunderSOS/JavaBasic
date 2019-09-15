@@ -2,9 +2,9 @@
 2 WINDOW "Clock", s_width, s_height
 3 INK 255, 255, 255 : PAPER 0, 0, 0: CLS
 
-10 DEF seconds() = INT(time()/1000)
+10 DEF seconds() = INT(local_time()/1000)
 11 DEF minutes() = INT(seconds()/60)
-12 DEF hours()   = INT(minutes()/12)/*60
+12 DEF hours()   = INT(minutes()/60)
 
 # draw the numbers on the clock face
 20 PLOT s_width/2, s_height/2 
@@ -12,8 +12,9 @@
 22 LET tradius = radius -11
 30 FOR n = 0 TO 59 STEP 5
 31 LET x = s_width/2+tradius*(sin(-(n+30)/30*PI))-5: LET y = s_height/2+tradius*(cos(-(n+30)/30*PI))+5
-32 PRINT AT x, y; INT(n/5)
-33 NEXT n
+32 IF n == 0 THEN PRINT AT x, y; 12
+33 IF n != 0 THEN PRINT AT x, y; INT(n/5)
+34 NEXT n
 40 LET draw = 1
 # draw the outer circle
 45 ELLIPSE radius*2, radius*2
@@ -22,7 +23,7 @@
 50 LET t = seconds()
 51 LET secs  = mod(seconds(), 60)
 52 LET mins  = mod(minutes(), 60)
-53 LET hours = mod(hours(), 24)
+53 LET hours = mod(hours(), 12)
 60 PUSH secs
 61 GOSUB 150
 62 POP secs$
@@ -32,16 +33,16 @@
 66 PUSH hours
 67 GOSUB 150
 68 POP hours$
-69 PRINT AT 0, 35; seconds()
-70 PRINT AT 0, 20; hours$ + ":" + mins$ + ":" + secs$
+70 PRINT AT 0, 20; hours$ + ":" + mins$ + ":" + secs$ 
 
 # draw hands
+88 LET angle_offset = 30
 89 INK 255, 255, 0
-90 DRAW s_width/2+radius*(sin(-(secs+30)/30*PI)), s_height/2+radius*(cos(-(secs+30)/30*PI)) 
+90 DRAW s_width/2+radius*(sin(-(secs+angle_offset)/30*PI)), s_height/2+radius*(cos(-(secs+angle_offset)/30*PI)) 
 92 INK 0, 255, 255
-95 IF secs == 0 && draw == 0 THEN DRAW s_width/2+80*(sin(-(mins+30)/30*PI)), s_height/2+80*(cos(-(mins+30)/30*PI)) 
+95 IF secs == 0 && draw == 0 THEN DRAW s_width/2+80*(sin(-(mins+angle_offset)/30*PI)), s_height/2+80*(cos(-(mins+angle_offset)/30*PI)) 
 96 INK 0, 255, 0
-97 IF secs == 0 && draw == 0 THEN DRAW s_width/2+60*(sin(-(hours+30)/30*PI)), s_height/2+60*(cos(-(hours+30)/30*PI)) 
+97 IF secs == 0 && draw == 0 THEN DRAW s_width/2+60*(sin(-((hours*5)+angle_offset)/30*PI)), s_height/2+60*(cos(-((hours*5)+angle_offset)/30*PI)) 
 98 INK 255, 255, 255
 
 100 PAUSE 100
@@ -50,17 +51,18 @@
 
 # draw hour and minute on the first pass
 124 INK 0, 255, 255
-125 IF draw == 1 THEN DRAW s_width/2+80*(sin(-(mins+30)/30*PI)), s_height/2+80*(cos(-(mins+30)/30*PI)) 
+125 IF draw == 1 THEN DRAW s_width/2+80*(sin(-(mins+angle_offset)/30*PI)), s_height/2+80*(cos(-(mins+angle_offset)/30*PI)) 
 126 INK 0, 255, 0
-127 IF draw == 1 THEN DRAW s_width/2+60*(sin(-(hours+30)/30*PI)), s_height/2+60*(cos(-(hours+30)/30*PI)) 
+127 IF draw == 1 THEN DRAW s_width/2+60*(sin(-((hours*5)+angle_offset)/12*PI)), s_height/2+60*(cos(-((hours*5)+angle_offset)/30*PI)) 
 128 LET draw = 0
 
 # undraw the hands 
 129 INK 255, 255, 0
-130 DRAW s_width/2+radius*(sin(-(secs+30)/30*PI)), s_height/2+radius*(cos(-(secs+30)/30*PI))
+130 DRAW s_width/2+radius*(sin(-(secs+angle_offset)/30*PI)), s_height/2+radius*(cos(-(secs+angle_offset)/30*PI))
 132 INK 0, 255, 255 
-133 IF mod(t1, 60) == 0 THEN DRAW s_width/2+80*(sin(-(mins+30)/30*PI)), s_height/2+80*(cos(-(mins+30)/30*PI)) 
-134 IF mod(t1, 60) == 0 THEN DRAW s_width/2+60*(sin(-(hours+30)/30*PI)), s_height/2+60*(cos(-(hours+30)/30*PI)) 
+133 IF mod(t1, 60) == 0 THEN DRAW s_width/2+80*(sin(-(mins+angle_offset)/30*PI)), s_height/2+80*(cos(-(mins+angle_offset)/30*PI)) 
+134 INK 0, 255, 0
+135 IF mod(t1, 60) == 0 THEN DRAW s_width/2+60*(sin(-((hours*5)+angle_offset)/30*PI)), s_height/2+60*(cos(-((hours*5)+angle_offset)/30*PI)) 
 
 # jump back to draw the new second
 140 GOTO 50

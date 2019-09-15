@@ -35,7 +35,7 @@ public class PRINT extends AbstractCommand {
     
     for(Expression e : statement.getExpressions()) {
       String str = e.eval().getArgument().getStringValue();
-      System.out.println("******* PRINT: " + str);
+      System.out.println(str);
       context.getDisplayWindow().drawString(str);
     }
     

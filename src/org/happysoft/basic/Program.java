@@ -12,7 +12,6 @@ import java.util.TreeSet;
 
 import org.happysoft.basic.command.Command;
 import org.happysoft.basic.command.AbstractCommand;
-import org.happysoft.basic.expression.LocalArgumentMap;
 import org.happysoft.basic.expression.StringUtils;
 
 /**
@@ -226,7 +225,7 @@ public class Program {
     try {
       Program p = new Program();
       
-      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\read_1.bas");
+      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\clock.bas");
 
 
       p.parseProgram(program);

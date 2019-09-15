@@ -41,7 +41,7 @@ public class FOR extends AbstractCommand {
     long from = assignmentValue.getArgument().getIntValue();
     long to, step = 1;
     to = toAndStep[0].eval().getArgument().getIntValue();
-    if (toAndStep.length == 3) {
+    if (toAndStep.length == 2) {
       step = toAndStep[1].eval().getArgument().getIntValue();
     }
     if((to < from && step > 0) || (from < to && step < 0)) {
