@@ -4,7 +4,7 @@
 
 10 DEF seconds() = INT(local_time()/1000)
 11 DEF minutes() = INT(seconds()/60)
-12 DEF hours()   = INT(minutes()/60)
+12 DEF hours()   = minutes()/60
 
 # draw the numbers on the clock face
 20 PLOT s_width/2, s_height/2 
@@ -23,14 +23,14 @@
 50 LET t = seconds()
 51 LET secs  = mod(seconds(), 60)
 52 LET mins  = mod(minutes(), 60)
-53 LET hours = mod(hours(), 12)
+53 LET hours = hours()
 60 PUSH secs
 61 GOSUB 150
 62 POP secs$
 63 PUSH mins
 64 GOSUB 150
 65 POP mins$
-66 PUSH hours
+66 LET h = mod(val(hours), 24) : PUSH h
 67 GOSUB 150
 68 POP hours$
 70 PRINT AT 0, 20; hours$ + ":" + mins$ + ":" + secs$ 
