@@ -210,17 +210,15 @@ public class Statement {
   }
   
   private int doIdentifierInline(String line) throws SyntaxError { 
-    int index = line.indexOf('(');
-    if (index < 0) {
-      index = line.indexOf('[');
+    int index = line.indexOf(',');
+    if(index < 0) {
+      index = line.indexOf('(');
       if (index < 0) {
+        index = line.indexOf('[');
         if (index < 0) {
-          index = line.indexOf(',');
-          if (index < 0) {
-            index = line.length();
-          }
+          index = line.length();
         }
-      }
+      }      
     }
     identifiers.add(line.substring(0, index).trim());
     System.out.println("Identifier: " + identifiers.get(0));

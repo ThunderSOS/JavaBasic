@@ -10,7 +10,7 @@ import org.happysoft.basic.SyntaxError;
  */
 public interface Connectable {
   public void connect(String... params) throws SyntaxError;
-  public byte[] read(int max) throws SyntaxError;
+  public byte[] read(int from, int to) throws SyntaxError;
   public void write(byte[] bytes) throws SyntaxError;
   public void close() throws SyntaxError;
 }

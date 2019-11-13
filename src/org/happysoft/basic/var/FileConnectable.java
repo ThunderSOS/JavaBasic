@@ -52,13 +52,12 @@ public class FileConnectable implements Connectable {
     }
   }
   
-
-  public byte[] read(int max) throws SyntaxError {
-    byte[] b = new byte[max];
+  public byte[] read(int from, int to) throws SyntaxError {
+    byte[] b = new byte[to-from];
     try {
-      bin.read(b);
+      bin.read(b, from, to-from);
     } catch (IOException ex) {
-      
+      throw new SyntaxError("Read error");
     }
     return b;
   }

@@ -90,7 +90,10 @@ public class ExpressionTokenizer {
     char c = expression.charAt(currentPosition);
     
 		if(c == '(') {
-			nextType = TokenType.EXPRESSION;      
+			nextType = TokenType.EXPRESSION;
+      if(currentType == TokenType.VARIABLE) {
+        currentType = TokenType.FUNCTION;
+      }
 		} else {
       if(c == '[') {
         nextType = TokenType.INDEX_EXPRESSION;
@@ -111,7 +114,7 @@ public class ExpressionTokenizer {
                 if(Character.isLetter(c)) {
                   nextType = TokenType.VARIABLE;
                 } else {
-                  throw new SyntaxError("variable or number expected");
+                  throw new SyntaxError("Variable or number expected");
                 }
               }
             } else {

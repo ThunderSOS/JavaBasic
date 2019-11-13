@@ -10,6 +10,7 @@ import org.happysoft.basic.SyntaxError;
 import org.happysoft.basic.var.Connectable;
 import org.happysoft.basic.var.ConnectableTable;
 import org.happysoft.basic.var.FileConnectable;
+import org.happysoft.basic.var.HttpConnectable;
 import org.happysoft.basic.var.TcpConnectable;
 
 /**
@@ -44,6 +45,10 @@ public class OPEN extends AbstractCommand {
       case TCP: 
         doTcp(statement);
         break;
+        
+      case HTTP:
+        doHttp(statement);
+        break;
     }
     
   }
@@ -57,6 +62,19 @@ public class OPEN extends AbstractCommand {
     int append = (int)porte.getArgument().getIntValue();
     Connectable tcp = new FileConnectable(filename, append == 1);
     tcp.connect();
+    ConnectableTable table = ConnectableTable.getInstance();
+    table.add(identifier, tcp); 
+  }
+  
+  private void doHttp(Statement statement) throws SyntaxError {    
+    Expression[] expressions = getExpressions(statement);
+    String identifier = statement.getIdentifiers()[0];
+    ExpressionResult hoste = expressions[0].eval();
+    ExpressionResult porte = expressions[1].eval();
+    String host = hoste.getArgument().getStringValue();
+    int port = (int)porte.getArgument().getIntValue();
+    Connectable tcp = new HttpConnectable();
+    tcp.connect(host, "" + port);
     ConnectableTable table = ConnectableTable.getInstance();
     table.add(identifier, tcp); 
   }

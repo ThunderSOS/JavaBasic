@@ -30,7 +30,7 @@ public class READ extends AbstractCommand {
 
   @Override
   public StructureElement[] getCommandStructure() {
-    return new StructureElement[]{StructureElement.IDENTIFIER_LIST};
+    return new StructureElement[]{StructureElement.IDENTIFIER_LIST};    
   }
 
   @Override
@@ -43,16 +43,26 @@ public class READ extends AbstractCommand {
 
   @Override
   public void execute(Program context, Statement statement) throws SyntaxError {
-    readData(context, statement);
+    if(ExtendedMode.FROM == extendedMode) {
+      readIO(statement);      
+    } else {
+      readData(context, statement);
+    }
   }
 
   private void readIO(Statement statement) throws SyntaxError {
-    String ioIdentifier = statement.getIdentifiers()[0];
+   
+    String ioIdentifier = statement.getIdentifiers()[0];    
     String var = statement.getIdentifiers()[1];
-    Expression maxE = statement.getExtendedModeExpressions()[0];
-    int max = (int) maxE.eval().getArgument().getIntValue();
+    
+    Expression fromE = statement.getExtendedModeExpressions()[0];
+    int from = (int) fromE.eval().getArgument().getIntValue();
+   
+    Expression toE = statement.getExtendedModeExpressions()[1];
+    int to = (int) toE.eval().getArgument().getIntValue();
+    
     ConnectableTable ct = ConnectableTable.getInstance();
-    byte[] b = ct.read(ioIdentifier, max);
+    byte[] b = ct.read(ioIdentifier, from, to);
 
     if (var.endsWith("$")) {
       String s = new String(b);
@@ -107,7 +117,6 @@ public class READ extends AbstractCommand {
           res = data.getNext();
 
         } catch (NullPointerException npe) {
-
           context.setCurrentLineNumber(currentLine);
           context.setCurrentStatementNumber(currentStatement);
           throw new SyntaxError("Not enough DATA");
@@ -116,8 +125,6 @@ public class READ extends AbstractCommand {
 
       Argument arg = res.getArgument();
       
-      System.out.println("***** " + arg.getTokenType());
-
       if (arg.getTokenType() == TokenType.NUMBER) {
         if (var.endsWith("$")) {
           throw new SyntaxError("Numeric assignment to string variable");

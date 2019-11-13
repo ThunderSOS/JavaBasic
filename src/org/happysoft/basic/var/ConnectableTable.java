@@ -35,9 +35,9 @@ public class ConnectableTable {
     c.connect(params);
   }
   
-  public byte[] read(String identifier, int max) throws SyntaxError {
+  public byte[] read(String identifier, int from, int to) throws SyntaxError {
     Connectable c = connections.get(identifier);
-    return c.read(max);
+    return c.read(from, to);
   }
   
   public void write(String identifier, byte[] bytes) throws SyntaxError {

@@ -42,11 +42,11 @@ public class HttpConnectable implements Connectable {
     }
   }
 
-  public byte[] read(int max) throws SyntaxError {
-    byte[] b = new byte[max];
+  public byte[] read(int from, int to) throws SyntaxError {
+    byte[] b = new byte[to-from];
     try {
-      bin.read(b);
-    } catch (IOException ex) {
+      bin.read(b, 0, to-from);
+    } catch (Exception ex) {
       throw new SyntaxError("Read error");
     }
     return b;
@@ -66,15 +66,6 @@ public class HttpConnectable implements Connectable {
 
   public ConnectableType getConnectableType() {
     return ConnectableType.HTTP;
-  }
-  
-  public static void main(String[] args) throws SyntaxError {
-    HttpConnectable h = new HttpConnectable();
-    h.connect("http://www.google.co.uk");
-    byte[] bytes = h.read(1000);
-    String s = new String(bytes);
-    System.out.println(s);
-    h.close();
   }
 
 }

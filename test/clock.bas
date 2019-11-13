@@ -11,7 +11,7 @@
 21 LET radius = 100  
 22 LET tradius = radius -11
 30 FOR n = 0 TO 59 STEP 5
-31 LET x = s_width/2+tradius*(sin(-(n+30)/30*PI))-5: LET y = s_height/2+tradius*(cos(-(n+30)/30*PI))+5
+31 LET x = s_width/2+tradius* ( sin (-(n+30)/30*PI))-5: LET y = s_height/2+tradius*(cos(-(n+30)/30*PI))+5
 32 IF n == 0 THEN PRINT AT x, y; 12
 33 IF n != 0 THEN PRINT AT x, y; INT(n/5)
 34 NEXT n
@@ -21,7 +21,7 @@
 
 # clock loop
 50 LET t = seconds()
-51 LET secs  = mod(seconds(), 60)
+51 LET secs  = mod (seconds(), 60)
 52 LET mins  = mod(minutes(), 60)
 53 LET hours = hours()
 60 PUSH secs
