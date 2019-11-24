@@ -190,6 +190,10 @@ public class Statement {
             return;
           }
           break;
+         
+        case IDENTIFIER_LIST:
+          doIdentifierList(substring);
+          break;
 
         default:
           throw new SyntaxError("Extended mode only supports expressions lists and identifiers");
@@ -210,15 +214,27 @@ public class Statement {
   }
   
   private int doIdentifierInline(String line) throws SyntaxError { 
-    int index = line.indexOf(',');
-    if(index < 0) {
-      index = line.indexOf('(');
+//    int index = line.indexOf(',');
+//    if(index < 0) {
+//      index = line.indexOf('(');
+//      if (index < 0) {
+//        index = line.indexOf('[');
+//        if (index < 0) {
+//          index = line.length();
+//        }
+//      }
+//    }
+    int index = line.indexOf('(');
+    if (index < 0) {
+      index = line.indexOf('[');
       if (index < 0) {
-        index = line.indexOf('[');
         if (index < 0) {
-          index = line.length();
+          index = line.indexOf(',');
+          if (index < 0) {
+            index = line.length();
+          }
         }
-      }      
+      }
     }
     identifiers.add(line.substring(0, index).trim());
     System.out.println("Identifier: " + identifiers.get(0));

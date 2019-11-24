@@ -14,7 +14,7 @@ public enum ExtendedMode {
   UDP(0, StructureElement.IDENTIFIER),
   HTTP(0, StructureElement.IDENTIFIER),
   FILE(0, StructureElement.IDENTIFIER),
-  FROM(0, StructureElement.IDENTIFIER, StructureElement.EXPRESSION_LIST),
+  FROM(0, StructureElement.IDENTIFIER_LIST),
   KEY(0, StructureElement.IDENTIFIER);
   
   private int numArgs;

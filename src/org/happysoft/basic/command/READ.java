@@ -30,7 +30,7 @@ public class READ extends AbstractCommand {
 
   @Override
   public StructureElement[] getCommandStructure() {
-    return new StructureElement[]{StructureElement.IDENTIFIER_LIST};    
+    return new StructureElement[]{StructureElement.EXPRESSION_LIST};    
   }
 
   @Override
@@ -55,10 +55,10 @@ public class READ extends AbstractCommand {
     String ioIdentifier = statement.getIdentifiers()[0];    
     String var = statement.getIdentifiers()[1];
     
-    Expression fromE = statement.getExtendedModeExpressions()[0];
+    Expression fromE = statement.getExpressions()[0];
     int from = (int) fromE.eval().getArgument().getIntValue();
    
-    Expression toE = statement.getExtendedModeExpressions()[1];
+    Expression toE = statement.getExpressions()[1];
     int to = (int) toE.eval().getArgument().getIntValue();
     
     ConnectableTable ct = ConnectableTable.getInstance();
