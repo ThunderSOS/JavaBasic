@@ -30,7 +30,10 @@ public class READ extends AbstractCommand {
 
   @Override
   public StructureElement[] getCommandStructure() {
-    return new StructureElement[]{StructureElement.EXPRESSION_LIST};    
+    if(extendedMode == ExtendedMode.FROM) {
+      return new StructureElement[]{StructureElement.EXPRESSION_LIST};
+    }
+    return new StructureElement[]{StructureElement.IDENTIFIER_LIST};    
   }
 
   @Override
