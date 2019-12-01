@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.happysoft.basic.expression.ExpressionResult;
 import org.happysoft.basic.SyntaxError;
-import org.happysoft.basic.expression.BooleanExpressionResult;
 import org.happysoft.basic.expression.Expression;
 import org.junit.Before;
 import org.junit.Test;

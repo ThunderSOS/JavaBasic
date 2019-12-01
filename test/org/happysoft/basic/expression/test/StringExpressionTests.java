@@ -43,6 +43,7 @@ public class StringExpressionTests {
     tests.put("Test simple concatenation", new TestSet("\"string\"+ \"1\"", "string1"));
     tests.put("Test MultiString concat", new TestSet("\"t=\" + int(t) + \", t1=\" + int(t1)\n", "t=1, t1=2"));
     tests.put("Test str$", new TestSet("str$(1)", "1.0"));
+    tests.put("Test VAL", new TestSet("VAL(\"t+t1\")", "3.0"));
 	}
   
   @Test
