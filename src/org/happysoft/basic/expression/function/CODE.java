@@ -10,12 +10,12 @@ import org.happysoft.basic.expression.TokenType;
 /**
  * @author Chris Francis (c_francis1@yahoo.com)
  */
-public class CHR$ extends Function {
+public class CODE extends Function {
 
   @Override
   public Argument eval(Argument... args) throws SyntaxError { 
-    char c = (char)args[0].getIntValue();
-		Argument a = new Argument("" + c, TokenType.STRING);
+    char c = (args[0].getStringValue().charAt(0));
+		Argument a = new Argument("" + (int)c, TokenType.NUMBER);
     return a;
 	}
 
