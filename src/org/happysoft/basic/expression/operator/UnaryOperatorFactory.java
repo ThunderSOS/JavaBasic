@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.operator;
 
 import org.happysoft.basic.SyntaxError;
@@ -8,29 +7,25 @@ import org.happysoft.basic.SyntaxError;
  */
 public class UnaryOperatorFactory {
 
-	private static UnaryOperatorFactory instance;
+  private static final UnaryOperatorFactory instance = new UnaryOperatorFactory();;
 
-	static {
-		instance = new UnaryOperatorFactory();
-	}
-  
-	private UnaryOperatorFactory() {
-	}
+  private UnaryOperatorFactory() {
+  }
 
-	public static UnaryOperatorFactory getInstance() {
-		return instance;
-	}
+  public static UnaryOperatorFactory getInstance() {
+    return instance;
+  }
 
-	public Operator getOperator(String operator) throws SyntaxError {
-		if("-".equals(operator)) {
-			return new UnaryMinus();
-		}
-		if("+".equals(operator)) {
-			return new UnaryPlus();
-		}
-    if("!".equals(operator)) {
-			return new BooleanNot();
-		}
-		throw new SyntaxError("Unknown unary operator: " + operator);
-	}
+  public Operator getOperator(String operator) throws SyntaxError {
+    if ("-".equals(operator)) {
+      return new UnaryMinus();
+    }
+    if ("+".equals(operator)) {
+      return new UnaryPlus();
+    }
+    if ("!".equals(operator)) {
+      return new BooleanNot();
+    }
+    throw new SyntaxError("Unknown unary operator: " + operator);
+  }
 }

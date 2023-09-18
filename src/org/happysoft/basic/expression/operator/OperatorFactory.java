@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.operator;
 
 import org.happysoft.basic.SyntaxError;
@@ -8,23 +7,24 @@ import org.happysoft.basic.SyntaxError;
  */
 public class OperatorFactory {
 
-	private static OperatorFactory instance;
+  private static OperatorFactory instance;
 
-	static {
-		instance = new OperatorFactory();
-	}
-	private OperatorFactory() {
-	}
+  static {
+    instance = new OperatorFactory();
+  }
 
-	public static OperatorFactory getInstance() {
-		return instance;
-	}
+  private OperatorFactory() {
+  }
 
-	public Operator getOperator(String operator) throws SyntaxError {
-		Operator o = Operators.getBySymbol(operator);
-		if(o == null) {
-			throw new SyntaxError("Unknown operator: " + operator);
-		}
-		return o;
-	}
+  public static OperatorFactory getInstance() {
+    return instance;
+  }
+
+  public Operator getOperator(String operator) throws SyntaxError {
+    Operator o = Operators.getBySymbol(operator);
+    if (o == null) {
+      throw new SyntaxError("Unknown operator: " + operator);
+    }
+    return o;
+  }
 }

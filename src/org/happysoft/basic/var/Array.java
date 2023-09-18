@@ -2,7 +2,6 @@
 package org.happysoft.basic.var;
 
 import org.happysoft.basic.SyntaxError;
-import org.omg.CORBA.ACTIVITY_COMPLETED;
 
 /**
  * @author Chris
@@ -72,9 +71,6 @@ public class Array {
   }
   
   private int getStoragePosition(int... dimension)throws SyntaxError {
-//    if (dimension.length != sizes.length) {
-//      throw new SyntaxError("Incorrect array indexing");
-//    }
     int position = 0;
     int mybase = 1;
     for (int i = 0; i < dimension.length; i++) {

@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.function;
 
 import java.util.HashMap;
@@ -9,21 +8,21 @@ import org.happysoft.basic.SyntaxError;
  */
 public class FunctionFactory {
 
-	private static FunctionFactory instance;
-	private final static HashMap<String, Function> functions = new HashMap<String, Function>();
+  private static FunctionFactory instance;
+  private final static HashMap<String, Function> functions = new HashMap<String, Function>();
 
-	static {
-		instance = new FunctionFactory();
-		functions.put("LN", new LN());
+  static {
+    instance = new FunctionFactory();
+    functions.put("LN", new LN());
     functions.put("LOG", new LOG());
     functions.put("SIN", new SIN());
-		functions.put("COS", new COS());
-  	functions.put("TAN", new TAN());
- 		functions.put("SQR", new SQR());
-		functions.put("MOD", new MOD());
-		functions.put("RND", new RND());
-		functions.put("ROUND", new ROUND());
-   	functions.put("INT", new INT());
+    functions.put("COS", new COS());
+    functions.put("TAN", new TAN());
+    functions.put("SQR", new SQR());
+    functions.put("MOD", new MOD());
+    functions.put("RND", new RND());
+    functions.put("ROUND", new ROUND());
+    functions.put("INT", new INT());
     functions.put("LEN", new LEN());
     functions.put("TIME", new TIME());
     functions.put("LOCAL_TIME", new LOCAL_TIME());
@@ -33,27 +32,27 @@ public class FunctionFactory {
     functions.put("CODE", new CODE());
     functions.put("CHR$", new CHR$());
     functions.put("STR$", new STR$());
+    functions.put("POW", new POW());
     functions.put("VAL", new VAL());
-	}
-	
-	private FunctionFactory() {
-	}
+  }
 
-	public static FunctionFactory getInstance() {
-		return instance;
-	}
+  private FunctionFactory() {
+  }
 
-	public Function getFunction(String function) throws SyntaxError {
-		Function fn = functions.get(function.toUpperCase());
-		if(fn == null) {
-			throw new SyntaxError("Function not found: " + function);
-		}
-		return fn;
-	}
-  
+  public static FunctionFactory getInstance() {
+    return instance;
+  }
+
+  public Function getFunction(String function) throws SyntaxError {
+    Function fn = functions.get(function.toUpperCase());
+    if (fn == null) {
+      throw new SyntaxError("Function not found: " + function);
+    }
+    return fn;
+  }
+
   public void addUDF(String name, Function udf) {
     functions.put(name.toUpperCase(), udf);
   }
-
 
 }

@@ -49,11 +49,5 @@ public class ConnectableTable {
     Connectable c = connections.get(identifier);
     c.close();
   }
-
-  @Override
-  public void finalize() throws Throwable {
-    super.finalize();
-    System.out.println("Finalize called");
-  }
   
 }
