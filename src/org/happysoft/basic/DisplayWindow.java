@@ -127,8 +127,6 @@ public class DisplayWindow extends JFrame {
     g.setColor(foreground);
   }
   
-  
-  
   private void showWindow() {
     this.addKeyListener(new KeyAdapter() {
 
@@ -148,24 +146,18 @@ public class DisplayWindow extends JFrame {
       @Override
       public void keyTyped(KeyEvent e) {
         super.keyTyped(e);
-        System.out.println("Key typed: " + e.paramString());
         lastKey = e.getKeyChar();
-      }
-      
+        System.out.println("Key typed: " + lastKey);
+      }      
     });
+    
     this.addComponentListener(new ComponentAdapter() {
       @Override
       public void componentMoved(ComponentEvent e) {
         super.componentMoved(e);
         isMoving = true;
-        System.out.println("Moving");
-//        synchronized(context) {
-//          try {
-//            context.wait();
-//          } catch (InterruptedException ie) {
-//            System.out.println("Hmm..");
-//          }
-//        }
+        System.out.println("****************** Component moved ****************");
+               
       }
     });
     
@@ -175,10 +167,8 @@ public class DisplayWindow extends JFrame {
         super.mouseReleased(e);
         if(isMoving) {
           isMoving = false;
-          System.out.println("Notfiy release");
-//          synchronized(context) {
-//            context.notify();
-//          }
+          System.out.println("****************** Mouse released ****************");
+          context.setCurrentLineNumber(1000);
         }
       }     
     });

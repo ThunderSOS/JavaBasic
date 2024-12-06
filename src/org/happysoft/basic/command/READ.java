@@ -25,6 +25,13 @@ import org.happysoft.basic.var.VariableTable;
  * To read into an array use: 
  * READ a
  * LET a[n] = a
+ * 
+ * READ FROM reads from an IO stream opened with OPEN
+ * e.g. READ FROM a, a$; start, length
+ * will read into a$ start to start+length bytes from 'a'.
+ * 
+ * READ FROM a, a; start, length
+ * will read the bytes an array a instead
  */
 public class READ extends AbstractCommand {
 
@@ -74,9 +81,7 @@ public class READ extends AbstractCommand {
     } else {
       NumericArrayTable nt = NumericArrayTable.getInstance();
       nt.createArray(var, b.length);
-      for (int i = 0; i < b.length; i++) {
-        nt.setValue(var, b[i], i);
-      }
+      nt.setValue(var, b, 0);
     }
   }
 

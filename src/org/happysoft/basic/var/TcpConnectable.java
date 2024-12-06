@@ -62,6 +62,16 @@ public class TcpConnectable implements Connectable {
   public void close() throws SyntaxError {
     throw new UnsupportedOperationException("Not supported yet.");
   }
+  
+  public long len() {
+    long l = -1L;
+    try {
+      l = (long) bin.available();
+    } catch(Exception e) {
+      System.err.println("Socket not connected: " + e);
+    }
+    return l;
+  }
 
   public ConnectableType getConnectableType() {
     return ConnectableType.TCP;

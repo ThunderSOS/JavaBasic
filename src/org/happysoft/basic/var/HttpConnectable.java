@@ -59,6 +59,16 @@ public class HttpConnectable implements Connectable {
       throw new SyntaxError("Write error");
     }
   }
+  
+  public long len() {
+    long l = -1L;
+    try {
+      l = (long) bin.available();
+    } catch(Exception e) {
+      System.err.println("Http not connected: " + e);
+    }
+    return l;
+  }
 
   public void close() throws SyntaxError {
     s.disconnect();

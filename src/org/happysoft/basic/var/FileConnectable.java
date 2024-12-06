@@ -71,6 +71,10 @@ public class FileConnectable implements Connectable {
     }
   }
   
+  public long len() {
+    return underlying.length();
+  }
+  
   public ConnectableType getConnectableType() {
     return ConnectableType.FILE;
   }

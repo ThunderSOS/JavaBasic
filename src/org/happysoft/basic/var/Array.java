@@ -2,7 +2,6 @@
 package org.happysoft.basic.var;
 
 import org.happysoft.basic.SyntaxError;
-import org.omg.CORBA.ACTIVITY_COMPLETED;
 
 /**
  * @author Chris
@@ -35,10 +34,17 @@ public class Array {
     for (int x : dimSizes) {
       storeSize *= base;
     }
-    if (storeSize > Integer.MAX_VALUE) {
+    if (storeSize > 65535) {
       throw new SyntaxError("Array index too large");
     }
     return (int)storeSize;
+  }  
+  
+  public void setAll(byte[] values, int... index) throws SyntaxError {
+    int position = getStoragePosition(index);
+    for(int i = 0; i < values.length; i++) {
+      storage[position+i] = (double)values[i];
+    }
   }
   
   public void set(double value, int... dimension) throws SyntaxError {

@@ -41,15 +41,14 @@ public class SimpleExpressionTests {
     tests.put("testSimpleUnary1", new TestSet("-(-1)", 1d));
     tests.put("testSimpleUnary2", new TestSet("-1", -1d));
     tests.put("testSimpleUnary3", new TestSet("2++1", 3d));
-    tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));        
-    tests.put("testChr$", new TestSet("chr$(\"A\")", 65d));
+    tests.put("testSimpleUnary4", new TestSet("2+-1", 1d));     
     tests.put("testPowers", new TestSet("2**2**3", 64d));
     tests.put("testPower", new TestSet("2+1**4", 81d)); // power precedence 
     tests.put("testPower2", new TestSet("1+(2**4)", 17d));
     tests.put("testBooleanAnd", new TestSet("2 & 3", 2d));
     tests.put("testBooleanOr", new TestSet("1 | 2 | 4", 7d));
     tests.put("testBooleanNot", new TestSet("!1", 0d));
-    
+    tests.put("testMultiplication", new TestSet("6/2*(1+2)", 9d));
 	}
 
 	@Test

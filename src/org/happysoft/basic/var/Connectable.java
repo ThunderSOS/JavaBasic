@@ -13,4 +13,5 @@ public interface Connectable {
   public byte[] read(int from, int to) throws SyntaxError;
   public void write(byte[] bytes) throws SyntaxError;
   public void close() throws SyntaxError;
+  public long len();
 }

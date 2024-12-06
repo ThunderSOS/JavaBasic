@@ -45,6 +45,11 @@ public class ConnectableTable {
     c.write(bytes);
   }
   
+  public long len(String identifier) throws SyntaxError {
+    Connectable c = connections.get(identifier);
+    return c.len();
+  }
+  
   public void close(String identifier) throws SyntaxError {
     Connectable c = connections.get(identifier);
     c.close();

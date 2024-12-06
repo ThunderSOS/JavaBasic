@@ -32,7 +32,11 @@ public class NumericArrayTable {
   public void setValue(String name, double value, int... dimension) throws SyntaxError {
     Array a = vars.get(name);
     a.set(value, dimension);
-    System.out.println("Assigned " + value + " to " + name + "[" + dimension[0] + ", ... ]");
+  }
+  
+  public void setValue(String name, byte[] values, int... dimension) throws SyntaxError {
+    Array a = vars.get(name);
+    a.setAll(values, dimension);
   }
   
   public double getValue(String arrayName, int... dimension) throws SyntaxError {
@@ -41,8 +45,7 @@ public class NumericArrayTable {
       throw new SyntaxError("Array " + arrayName + " not defined");
     }
     return a.getNumeric(dimension);
-  }
-  
+  }  
   
   public static void main(String[] args) {
     try {

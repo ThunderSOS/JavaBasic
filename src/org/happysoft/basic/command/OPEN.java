@@ -14,6 +14,11 @@ import org.happysoft.basic.var.HttpConnectable;
 import org.happysoft.basic.var.TcpConnectable;
 
 /**
+ * OPEN a connection to somewhere (file, http, etc). 
+ * OPEN HTTP a; "www.google.com", 80
+ * OPEN FILE f; "file.txt"
+ * a is the connection name for use in future READ/WRITE commands. 
+ * 
  * @author Chris
  */
 public class OPEN extends AbstractCommand {
