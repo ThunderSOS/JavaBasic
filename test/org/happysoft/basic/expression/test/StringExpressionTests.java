@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.test;
 
 import java.util.HashMap;
@@ -16,14 +15,14 @@ import static org.junit.Assert.*;
  * @author chris
  */
 public class StringExpressionTests {
-  
+
   private Map<String, TestSet> tests = new HashMap<String, TestSet>();
-  
+
   private class TestSet {
-    
+
     String expression;
     String expectedResult;
-    
+
     public TestSet(String expression, String result) {
       this.expectedResult = result;
       this.expression = expression;
@@ -33,12 +32,12 @@ public class StringExpressionTests {
   public StringExpressionTests() {
   }
 
-	@Before
-	public void setUp() {
+  @Before
+  public void setUp() {
     VariableTable vt = VariableTable.getInstance();
     vt.setVariable("t", "1");
     vt.setVariable("t1", "2");
-    
+
     tests.put("Test quoted string eval", new TestSet("\"string\"", "string"));
     tests.put("Test simple concatenation", new TestSet("\"string\"+ \"1\"", "string1"));
     tests.put("Test MultiString concat", new TestSet("\"t=\" + int(t) + \", t1=\" + int(t1)\n", "t=1, t1=2"));
@@ -46,17 +45,17 @@ public class StringExpressionTests {
     tests.put("Test VAL", new TestSet("VAL(\"t+t1\")", "3.0"));
     tests.put("Test SUBSTRING(VAL)", new TestSet("SUBSTRING(\"\"+ VAL(\"t+t1\"), 0, 1)", "3"));
     tests.put("test Chr$", new TestSet("chr$(\"65\")", "A"));
-	}
-  
+  }
+
   @Test
   public void testExpressions() {
-    for(String name : tests.keySet()) {
+    for (String name : tests.keySet()) {
       TestSet ts = tests.get(name);
       try {
         Expression e = new Expression(ts.expression);
         ExpressionResult result = e.eval();
         String d = result.getArgument().getStringValue();
-        if(!d.equals(ts.expectedResult)) {
+        if (!d.equals(ts.expectedResult)) {
           fail("Test '" + name + "' did not evaluate correctly; got: " + d + " but expected: " + ts.expectedResult);
         }
       } catch (SyntaxError se) {
@@ -64,5 +63,5 @@ public class StringExpressionTests {
       }
     }
   }
-  
+
 }
