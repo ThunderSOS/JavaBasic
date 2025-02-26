@@ -1,5 +1,4 @@
  5 OPEN HTTP a; "http://google.com", 80
- 6 PRINT(LEN (a))
 
 10 LET b$ = ""
 11 FOR n = 1 TO 100

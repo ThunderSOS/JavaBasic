@@ -14,9 +14,9 @@ public class DataCache {
   
   private int lastRead = 0;
   
-  private List<ExpressionResult> values = new ArrayList<ExpressionResult>();
+  private final List<ExpressionResult> values = new ArrayList<ExpressionResult>();
   
-  private static DataCache instance = new DataCache();
+  private static final DataCache instance = new DataCache();
   
   private DataCache() {
   }

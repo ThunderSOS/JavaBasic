@@ -44,7 +44,7 @@ public class StringExpressionTests {
     tests.put("Test STR$", new TestSet("STR$(t+t1)", "3.0"));
     tests.put("Test VAL", new TestSet("VAL(\"t+t1\")", "3.0"));
     tests.put("Test SUBSTRING(VAL)", new TestSet("SUBSTRING(\"\"+ VAL(\"t+t1\"), 0, 1)", "3"));
-    tests.put("test Chr$", new TestSet("chr$(\"65\")", "A"));
+    tests.put("test Chr$", new TestSet("chr$(VAL(\"65\"))", "A"));
   }
 
   @Test

@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.function;
 
 import org.happysoft.basic.SyntaxError;
@@ -10,13 +9,13 @@ import org.happysoft.basic.expression.TokenType;
  */
 public class SIN extends Function {
 
-	public int getNumArgs() {
-		return 1;
-	}
+  public int getNumArgs() {
+    return 1;
+  }
 
-	public Argument eval(Argument... args) throws SyntaxError {
+  public Argument eval(Argument... args) throws SyntaxError {
     double d = Math.sin(args[0].getDoubleValue());
-		Argument a = new Argument("" + d, TokenType.NUMBER);
+    Argument a = new Argument("" + d, TokenType.NUMBER);
     return a;
-	}
+  }
 }

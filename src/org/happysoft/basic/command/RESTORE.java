@@ -29,6 +29,6 @@ public class RESTORE extends AbstractCommand {
     context.setDataLineNumber((int)result.getArgument().getIntValue());
     context.setDataStatementNumber(0);
     dataCache.reset();
-    
   }
+  
 }

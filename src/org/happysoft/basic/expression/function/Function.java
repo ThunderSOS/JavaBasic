@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.function;
 
 import org.happysoft.basic.SyntaxError;
@@ -9,9 +8,10 @@ import org.happysoft.basic.expression.Argument;
  */
 public abstract class Function {
 
-	public Function() {
-	}
+  public Function() {
+  }
 
-	public abstract Argument eval(Argument... args) throws SyntaxError;
-	public abstract int getNumArgs();
+  public abstract Argument eval(Argument... args) throws SyntaxError;
+
+  public abstract int getNumArgs();
 }

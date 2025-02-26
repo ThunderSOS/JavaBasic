@@ -1,23 +1,11 @@
 1 LET s_width = s_width()/2 : LET s_height = s_height()/2
 2 WINDOW "Clock", s_width, s_height
-3 INK 255, 255, 255 : PAPER 0, 0, 0: CLS
 
 10 DEF seconds() = INT(local_time()/1000)
 11 DEF minutes() = INT(seconds()/60)
 12 DEF hours()   = minutes()/60
 
-# draw the numbers on the clock face
-20 PLOT s_width/2, s_height/2 
-21 LET radius = 100  
-22 LET tradius = radius -11
-30 FOR n = 0 TO 59 STEP 5
-31 LET x = s_width/2+tradius* ( sin (-(n+30)/30*PI))-5: LET y = s_height/2+tradius*(cos(-(n+30)/30*PI))+5
-32 IF n == 0 THEN PRINT AT x, y; 12
-33 IF n != 0 THEN PRINT AT x, y; INT(n/5)
-34 NEXT n
-40 LET draw = 1
-# draw the outer circle
-45 ELLIPSE radius*2, radius*2
+20 GOSUB 200
 
 # clock loop
 50 LET t = seconds()
@@ -73,3 +61,19 @@
 170 IF x < 10 THEN LET a$ = "0" + a$
 180 PUSH a$
 190 RETURN
+
+200 INK 255, 255, 255 : PAPER 0, 0, 0: CLS
+
+# draw the numbers on the clock face
+210 PLOT s_width/2, s_height/2 
+211 LET radius = 100  
+212 LET tradius = radius -11
+230 FOR n = 0 TO 59 STEP 5
+231 LET x = s_width/2+tradius* ( sin (-(n+30)/30*PI))-5: LET y = s_height/2+tradius*(cos(-(n+30)/30*PI))+5
+232 IF n == 0 THEN PRINT AT x, y; 12
+233 IF n != 0 THEN PRINT AT x, y; INT(n/5)
+234 NEXT n
+240 LET draw = 1
+# draw the outer circle
+245 ELLIPSE radius*2, radius*2
+250 RETURN

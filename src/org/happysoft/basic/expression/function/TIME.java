@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.function;
 
 import java.util.Calendar;
@@ -11,13 +10,14 @@ import org.happysoft.basic.expression.TokenType;
  */
 public class TIME extends Function {
 
-	public int getNumArgs() {
-		return 0;
-	}
+  public int getNumArgs() {
+    return 0;
+  }
 
-	public Argument eval(Argument... args) {
-		long time = System.currentTimeMillis();
+  public Argument eval(Argument... args) {
+    long time = //System.currentTimeMillis();
+    Calendar.getInstance(TimeZone.getTimeZone("GMT")).getTimeInMillis();
     Argument a = new Argument("" + time, TokenType.NUMBER);
     return a;
-	}
+  }
 }
