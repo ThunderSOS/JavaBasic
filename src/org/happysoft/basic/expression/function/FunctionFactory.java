@@ -32,8 +32,8 @@ public class FunctionFactory {
     functions.put("CODE", new CODE());
     functions.put("CHR$", new CHR$());
     functions.put("STR$", new STR$());
-    functions.put("VAL", new VAL());
     functions.put("POW", new POW());
+    functions.put("VAL", new VAL());
   }
 
   private FunctionFactory() {

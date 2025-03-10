@@ -119,7 +119,6 @@ public class Program {
       if(found && execute) {
         command.execute(this, s);
       }
-      continue;
     }   
     readDataFlag = false;
   }
@@ -183,7 +182,7 @@ public class Program {
   
   
   public void setLineAndStatement(int line, int statement) throws SyntaxError {
-    System.out.println("Jumping: " + line + "," + statement);
+    System.out.println("Jumping to: " + line + "," + statement);
     currentStatementNumber = statement;
     currentLineNumber = line;
     loadNextLine();
@@ -224,9 +223,7 @@ public class Program {
   public static void main(String[] args) {
     try {
       Program p = new Program();
-      
-      String program = p.loadProgram("C:\\NetBeansProjects\\Expression\\test\\clock.bas");
-
+      String program = p.loadProgram("C:\\Users\\chrisf\\Documents\\Expression\\test\\read_2.bas");
 
       p.parseProgram(program);
       p.run(0);

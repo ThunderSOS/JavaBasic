@@ -1,4 +1,3 @@
-
 package org.happysoft.basic.expression.operator;
 
 import org.happysoft.basic.SyntaxError;
@@ -11,18 +10,18 @@ import org.happysoft.basic.expression.TokenType;
  */
 public abstract class Operator {
 
-	protected String symbol;
+  protected String symbol;
 
-	public abstract ExpressionResult eval(Argument... args) throws SyntaxError;
+  public abstract ExpressionResult eval(Argument... args) throws SyntaxError;
 
-	public abstract int getPrecedence();
+  public abstract int getPrecedence();
 
-	public boolean isBoolean() {
-		return false;
-	}
-  
+  public boolean isBoolean() {
+    return false;
+  }
+
   protected boolean atLeastOneOfType(TokenType tt, Argument... args) {
-    for(Argument a: args) {
+    for (Argument a : args) {
       if (a.getTokenType() == tt) {
         return true;
       }
@@ -30,9 +29,9 @@ public abstract class Operator {
     return false;
   }
 
-	@Override
-	public String toString() {
-		return "" + symbol;
-	}
-  
+  @Override
+  public String toString() {
+    return "" + symbol;
+  }
+
 }

@@ -1,6 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+
+/**
+ * @author Chris Francis (c_francis1@yahoo.com)
  */
 package org.happysoft.basic.expression.function;
 
@@ -18,8 +18,8 @@ public class POW extends Function {
   }
 
   public Argument eval(Argument... args) throws SyntaxError {
-    double pow = Math.pow(args[0].getDoubleValue(), args[1].getDoubleValue());
-    Argument a = new Argument("" + pow, TokenType.NUMBER);
+    double d = Math.pow(args[0].getDoubleValue(), args[1].getDoubleValue());
+    Argument a = new Argument("" + d, TokenType.NUMBER);
     return a;
   }
 }

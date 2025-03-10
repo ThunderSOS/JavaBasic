@@ -23,7 +23,7 @@ public enum Operators {
   MULTIPLY("*", new Multiply()),
   DIVIDE("/", new Divide());
 
-  private static final HashMap<String, Operator> map = new HashMap<String, Operator>();
+  private static final HashMap<String, Operator> map = new HashMap<>();
 
   static {
     for (Operators o : Operators.values()) {
