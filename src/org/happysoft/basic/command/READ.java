@@ -47,7 +47,7 @@ public class READ extends AbstractCommand {
   public ExtendedMode[] getExtendedModes() {
     return new ExtendedMode[]{
       ExtendedMode.FROM,
-      ExtendedMode.KEY
+      ExtendedMode.KEY // not implemented yet... 
     };
   }
 
