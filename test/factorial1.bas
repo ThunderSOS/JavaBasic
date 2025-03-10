@@ -2,6 +2,7 @@
 20 LET m = 1
 30 GOSUB 100
 40 PRINT m
+45 ASSERT m==121
 50 STOP
 100 LET m = m * n 
 105 LET n = n-1 

@@ -50,6 +50,9 @@ public enum Commands {
   PAPER("PAPER", new PAPER()),
   CLS("CLS", new CLS()),
   PRINT("PRINT", new PRINT()),
+  
+  // Test assertions
+  ASSERT("ASSERT", new ASSERT()),
   ;
   
 	private static final HashMap<String, Command> map = new HashMap<String, Command>();

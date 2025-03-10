@@ -1,3 +1,0 @@
-10 FOR n = 0 TO 10
-20 PRINT n
-30 NEXT n
